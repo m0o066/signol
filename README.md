@@ -1,6 +1,6 @@
 # Signol
 
-Sign~~a~~==o==l is a signaling utils for web development.
+Sign~~a~~**o**l is a signaling utils for web development.
 
 ## Getting Started
 
