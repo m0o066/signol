@@ -1,8 +1,8 @@
-export function waitForDelay(ms: number = 0, controller?: AbortController): Promise<void> {
-  return new Promise((resolve, reject) => {
+export function waitForDelay(ms: number = 0, controller?: AbortController): Promise<boolean> {
+  return new Promise(resolve => {
     if(controller) {
-      controller.signal.addEventListener('abort', reject);
+      controller.signal.addEventListener('abort', () => resolve(false));
     }
-    setTimeout(resolve, ms);
+    setTimeout(() => resolve(true), ms);
   });
 }
