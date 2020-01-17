@@ -3,6 +3,33 @@ import { on, once, wait, off, emit, waitForDelay } from '../src';
 jest.useFakeTimers();
 
 describe('Signal', () => {
+  describe('signal type', () => {
+    beforeEach(() => off());
+
+    test('should support both string and symbol as signal name', () => {
+      const stringSignalCallback = jest.fn();
+      const anonymousSymbolSignalCallback = jest.fn();
+      const namedSymbolSignalCallback = jest.fn();
+
+      const stringSignalName = 'foo';
+      const anonymousSymbolSignalName = Symbol();
+      const namedSymbolSignalName = Symbol('foo');
+
+      on(stringSignalName, stringSignalCallback);
+      on(anonymousSymbolSignalName, anonymousSymbolSignalCallback);
+      on(namedSymbolSignalName, namedSymbolSignalCallback);
+
+      emit(stringSignalName);
+      emit(anonymousSymbolSignalName);
+      emit(namedSymbolSignalName);
+      
+      jest.runAllTimers();
+      expect(stringSignalCallback).toHaveBeenCalledTimes(1);
+      expect(anonymousSymbolSignalCallback).toHaveBeenCalledTimes(1);
+      expect(namedSymbolSignalCallback).toHaveBeenCalledTimes(1);
+    })
+  });
+
   describe('on', () => {
     beforeEach(() => off());
 
