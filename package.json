@@ -1,11 +1,16 @@
 {
   "name": "signol",
-  "version": "1.0.0",
+  "version": "1.1.2",
   "main": "dist/index.js",
+  "repository": "github:m0o066/signol",
+  "files": [
+    "dist/**/*"
+  ],
   "scripts": {
     "build": "tsc",
     "watch": "tsc --watch",
-    "test": "jest"
+    "test": "jest",
+    "prepublishOnly": "npm run test && npm run build"
   },
   "license": "MIT",
   "dependencies": {},

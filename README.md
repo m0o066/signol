@@ -15,7 +15,7 @@ npm i -S signol
 ```typescript
 import { on, once, wait, off, emit } from 'signol';
 
-function callback(signalName: string, ...args: any[]): void {
+function callback(signalName: string | symbol, ...args: any[]): void {
   console.log( ... );
 }
 
